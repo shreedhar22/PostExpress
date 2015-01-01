@@ -1,6 +1,13 @@
 angular.module("postApp",[])
-   .controller("postController", ['$scope',function($scope){
-     $scope.posts=[];
+    .factory('posts',[function(){
+   	var o={
+      posts:[]
+   	};
+   	  return o;
+   }])
+
+   .controller("postController", ['$scope','posts',function($scope,posts){
+     $scope.posts=posts.posts[];
    $scope.post = {title:"",upvotes:0,link:"",comment:""}
     $scope.title="";
     $scope.upvotes = 0;
