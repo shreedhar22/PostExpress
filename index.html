@@ -4,7 +4,8 @@
        
          <h1>Welcome to PostExpress</h1> 
           <div ng-repeat="post in posts track by $index">
-                 {{posts[$index].title}}
+                 {{posts[$index].title}}- upvotes:<span ng-click="incrementVotes($index)">^</span> {{posts[$index].upvotes}}
+                 <span ng-click="removePost($index)">x</span>
           </div>
             <form ng-submit="addPost()">
                 Title:<input type="text" ng-model="title" />
