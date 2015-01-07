@@ -1,13 +1,29 @@
-angular.module("postApp",[])
-    .factory('posts',[function(){
+angular.module("postApp",['ui.router'])
+   .config([
+'$stateProvider',
+'$urlRouterProvider',
+function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+    .state('home', {
+      url: '/home',
+      templateUrl: '/home.html',
+      controller: 'HomeController'       //needs to be passed in the controller, we don't use it in html file after routing.
+    })
+
+     
+  $urlRouterProvider.otherwise('home');
+}])
+
+   .factory('posts',[function(){           //'posts' is the argument passed in the controller where posts service is required.
    	var o={
       posts:[]
    	};
    	  return o;
    }])
 
-   .controller("postController", ['$scope','posts',function($scope,posts){
-     $scope.posts=posts.posts[];
+   .controller("HomeController", ['$scope','posts',function($scope,posts){          //'posts' is the argument from the factory service. 
+     $scope.posts=posts.posts;                                                      // use of posts array form the 'posts' service
    $scope.post = {title:"",upvotes:0,link:"",comment:""}
     $scope.title="";
     $scope.upvotes = 0;
